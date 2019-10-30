@@ -22,3 +22,28 @@
   </tr>
   {{/each}}
 </table>
+
+<table>
+  <tr>
+    <th>Part Number</th>
+    <th>Manufacturer</th>
+    <th>Dimensions</th>
+    <th>Onboard RX</th>
+    <th>Battery</th>
+    <th>Weight (g)</th>
+    <th>ESC Current (A)</th>
+    <th>ESC Type</th>
+  </tr>
+  {{#each model.flightControllers as |fc|}}
+  <tr>
+    <td>{{fc.partNumber}}</td>
+    <td>{{fc.manufacturer}}</td>
+    <td>{{fc.dimensions}}</td>
+    <td>{{fc.onboardRx}}</td>
+    <td>{{fc.battery}}</td>
+    <td>{{fc.weight}}</td>
+    <td>{{fc.escCurrent}}</td>
+    <td>{{fc.escType}}</td>
+  </tr>
+  {{/each}}
+</table>

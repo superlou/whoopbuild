@@ -8,6 +8,7 @@ export default Route.extend({
   model() {
     return RSVP.hash({
       motors: this.store.findAll('motor'),
+      flightControllers: this.store.findAll('flightController'),
     });
   }
 });

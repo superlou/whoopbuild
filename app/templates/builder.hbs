@@ -1,0 +1,24 @@
+{{outlet}}
+
+<table>
+  <tr>
+    <th>Part Number</th>
+    <th>Manufacturer</th>
+    <th>Shaft Diameter (mm)</th>
+    <th>KV</th>
+    <th>Battery</th>
+    <th>Weight (g)</th>
+    <th>Type</th>
+  </tr>
+  {{#each model.motors as |motor|}}
+  <tr>
+    <td>{{motor.partNumber}}</td>
+    <td>{{motor.manufacturer}}</td>
+    <td>{{motor.shaftDiameter}}</td>
+    <td>{{motor.kv}}</td>
+    <td>{{motor.battery}}</td>
+    <td>{{motor.weight}}</td>
+    <td>{{motor.type}}</td>
+  </tr>
+  {{/each}}
+</table>

@@ -1,49 +1,39 @@
 {{outlet}}
 
 <table>
-  <tr>
-    <th>Part Number</th>
-    <th>Manufacturer</th>
-    <th>Shaft Diameter (mm)</th>
-    <th>KV</th>
-    <th>Battery</th>
-    <th>Weight (g)</th>
-    <th>Type</th>
-  </tr>
-  {{#each model.motors as |motor|}}
-  <tr>
-    <td>{{motor.partNumber}}</td>
-    <td>{{motor.manufacturer}}</td>
-    <td>{{motor.shaftDiameter}}</td>
-    <td>{{motor.kv}}</td>
-    <td>{{motor.battery}}</td>
-    <td>{{motor.weight}}</td>
-    <td>{{motor.type}}</td>
-  </tr>
-  {{/each}}
+  <thead>
+    <tr>
+      <th>Part Number</th>
+      <th>Weight</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.flightControllers as |part|}}
+      <tr>
+        <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
+        <td>{{part.part.weight}}</td>
+        <td>{{part.dimensions}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
 </table>
 
 <table>
-  <tr>
-    <th>Part Number</th>
-    <th>Manufacturer</th>
-    <th>Dimensions</th>
-    <th>Onboard RX</th>
-    <th>Battery</th>
-    <th>Weight (g)</th>
-    <th>ESC Current (A)</th>
-    <th>ESC Type</th>
-  </tr>
-  {{#each model.flightControllers as |fc|}}
-  <tr>
-    <td>{{fc.partNumber}}</td>
-    <td>{{fc.manufacturer}}</td>
-    <td>{{fc.dimensions}}</td>
-    <td>{{fc.onboardRx}}</td>
-    <td>{{fc.battery}}</td>
-    <td>{{fc.weight}}</td>
-    <td>{{fc.escCurrent}}</td>
-    <td>{{fc.escType}}</td>
-  </tr>
-  {{/each}}
+  <thead>
+    <tr>
+      <th>Part Number</th>
+      <th>Weight</th>
+      <th>Battery</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.motors as |part|}}
+      <tr>
+        <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
+        <td>{{part.part.weight}}</td>
+        <td>{{part.battery}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
 </table>

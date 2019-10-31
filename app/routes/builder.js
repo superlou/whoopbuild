@@ -6,9 +6,11 @@ export default Route.extend({
   store: service(),
 
   model() {
+    // this.store.findAll('part');
+
     return RSVP.hash({
-      motors: this.store.findAll('motor'),
       flightControllers: this.store.findAll('flightController'),
+      motors: this.store.findAll('motor'),
     });
   }
 });

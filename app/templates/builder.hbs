@@ -1,39 +1,54 @@
-{{outlet}}
+<div id='bom'>
+  Test
+  {{outlet}}
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Part Number</th>
-      <th>Weight</th>
-      <th>Dimensions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each model.flightControllers as |part|}}
-      <tr>
-        <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
-        <td>{{part.part.weight}}</td>
-        <td>{{part.dimensions}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+<BsTab as |tab|>
+  <tab.pane @title="Flight Controllers">
 
-<table>
-  <thead>
-    <tr>
-      <th>Part Number</th>
-      <th>Weight</th>
-      <th>Battery</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each model.motors as |part|}}
-      <tr>
-        <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
-        <td>{{part.part.weight}}</td>
-        <td>{{part.battery}}</td>
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Part Number</th>
+          <th>Weight</th>
+          <th>Dimensions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.flightControllers as |fc|}}
+          <tr>
+            <td><small>{{fc.part.manufacturer}}</small><br>{{fc.part.partNumber}}</td>
+            <td>{{fc.part.weight}}</td>
+            <td>{{fc.dimensions}}</td>
+            <td>{{#each fc.part.partListing as |pl|}}{{pl.listing.purchase_url}}{{/each}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+  </tab.pane>
+
+  <tab.pane @title="Motors">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Part Number</th>
+          <th>Weight</th>
+          <th>Battery</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.motors as |part|}}
+          <tr>
+            <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
+            <td>{{part.part.weight}}</td>
+            <td>{{part.battery}}</td>
+            <td>{{#each part.part.partListing as |pl|}}{{pl.listing.purchase_url}}{{/each}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+  </tab.pane>
+</BsTab>

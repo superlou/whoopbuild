@@ -7,4 +7,5 @@ export default Model.extend({
   weight: DS.attr(),
   flightController: DS.hasMany('flight-controller'),
   motor: DS.hasMany('motor'),
+  partListing: DS.hasMany('part-listing'),
 });

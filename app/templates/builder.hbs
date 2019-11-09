@@ -17,10 +17,12 @@
       <tbody>
         {{#each model.flightControllers as |fc|}}
           <tr>
-            <td><small>{{fc.part.manufacturer}}</small><br>{{fc.part.partNumber}}</td>
+            <td>
+              <small>{{fc.part.manufacturer}}</small><br>{{fc.part.partNumber}}
+              <br><PartListings @partListings={{fc.part.partListings}} @example="Something"/>
+            </td>
             <td>{{fc.part.weight}}</td>
             <td>{{fc.dimensions}}</td>
-            <td>{{#each fc.part.partListing as |pl|}}{{pl.listing.purchase_url}}{{/each}}</td>
           </tr>
         {{/each}}
       </tbody>
@@ -41,10 +43,12 @@
       <tbody>
         {{#each model.motors as |part|}}
           <tr>
-            <td><small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}</td>
+            <td>
+              <small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}
+              <br><PartListings @partListings={{part.part.partListings}} @example="Something"/>
+            </td>
             <td>{{part.part.weight}}</td>
             <td>{{part.battery}}</td>
-            <td>{{#each part.part.partListing as |pl|}}{{pl.listing.purchase_url}}{{/each}}</td>
           </tr>
         {{/each}}
       </tbody>

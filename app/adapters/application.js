@@ -13,6 +13,15 @@ export default DS.Adapter.extend({
       Tabletop.init({
         wanted: [type.modelName], ...options
       }).then(function(data, tabletop) {
+        // console.log(type);
+        //
+        // let response = {};
+        // response.data = data.map(row => {
+        //   return Object.assign({}, row, {type: type.modelName});
+        // });
+        //
+        // console.log(response);
+
         resolve(data);
       });
     });

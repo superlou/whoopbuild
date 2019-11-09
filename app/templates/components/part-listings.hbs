@@ -1,0 +1,8 @@
+<ul>
+  {{#each @partListings as |pl|}}
+    <li>
+      <a href={{pl.listing.purchase_url}}>URL</a>, ${{pl.listing.price}}
+      <BsButton @size="sm">Add</BsButton>
+    </li>
+  {{/each}}
+</ul>

@@ -4,4 +4,5 @@ const { Model } = DS;
 export default Model.extend({
   purchase_url: DS.attr(),
   price: DS.attr(),
+  
 });

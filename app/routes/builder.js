@@ -7,7 +7,6 @@ export default Route.extend({
 
   model() {
     this.store.findAll('partListing');
-    this.store.findAll('listing');
 
     return RSVP.hash({
       flightControllers: this.store.findAll('flightController'),

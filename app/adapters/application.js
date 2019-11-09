@@ -7,22 +7,45 @@ let options = {
   parseNumbers: true,
 }
 
-export default DS.Adapter.extend({
+function rowToJsonApi(row, model) {
+  let item = {
+    type: model.modelName,
+    id: row.id.toString(),
+    attributes: {},
+    relationships: {},
+  };
+
+  model.eachAttribute((name, meta) => {
+    item.attributes[name.dasherize()] = row[name.underscore()]
+  });
+
+  model.eachRelationship((name, descriptor) => {
+    if (descriptor.kind === 'belongsTo') {
+      item.relationships[name] = {
+        data: {
+          type: descriptor.type,
+          id: row[name.underscore() + '_id'].toString(),
+        }
+      }
+    }
+  });
+
+  return item;
+}
+
+export default DS.JSONAPIAdapter.extend({
   findAll(store, type) {
     return new RSVP.Promise(function(resolve, reject) {
       Tabletop.init({
-        wanted: [type.modelName], ...options
+        wanted: [ type.modelName], ...options
       }).then(function(data, tabletop) {
-        // console.log(type);
-        //
-        // let response = {};
-        // response.data = data.map(row => {
-        //   return Object.assign({}, row, {type: type.modelName});
-        // });
-        //
-        // console.log(response);
+        let response = {};
 
-        resolve(data);
+        response.data = data.map(row => {
+          return rowToJsonApi(row, type);
+        });
+
+        resolve(response);
       });
     });
   },
@@ -35,7 +58,10 @@ export default DS.Adapter.extend({
         let match = data.find(function(row) {
           return row.id.toString() == id;
         });
-        resolve(match);
+
+        let response = {};
+        response.data = rowToJsonApi(match, type);
+        resolve(response);
       });
     });
   },
@@ -48,7 +74,12 @@ export default DS.Adapter.extend({
         let match = data.filter(function(row) {
           return ids.includes(row.id.toString());
         });
-        resolve(match);
+
+        let response = {};
+        response.data = match.map(row => {
+          return rowToJsonApi(row, type);
+        });
+        resolve(response);
       });
     });
   }

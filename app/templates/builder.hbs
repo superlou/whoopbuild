@@ -18,7 +18,7 @@
         {{#each model.flightControllers as |fc|}}
           <tr>
             <td>
-              <small>{{fc.part.manufacturer}}</small><br>{{fc.part.partNumber}}
+              {{fc.part.partNumber}} <small>{{fc.part.manufacturer}}</small>
               <br><PartListings @partListings={{fc.part.partListings}} @example="Something"/>
             </td>
             <td>{{fc.part.weight}}</td>
@@ -44,7 +44,7 @@
         {{#each model.motors as |part|}}
           <tr>
             <td>
-              <small>{{part.part.manufacturer}}</small><br>{{part.part.partNumber}}
+              {{part.part.partNumber}} <small>{{part.part.manufacturer}}</small>
               <br><PartListings @partListings={{part.part.partListings}} @example="Something"/>
             </td>
             <td>{{part.part.weight}}</td>

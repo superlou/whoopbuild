@@ -53,6 +53,6 @@
     "node": "8.* || >= 10.*"
   },
   "dependencies": {
-    "tabletop": "^1.6.2"
+    "tabletop": "^1.6.3"
   }
 }
